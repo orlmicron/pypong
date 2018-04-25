@@ -30,7 +30,7 @@ class Pelota:
             if pos[3] >= raqueta_pos[1] and pos[3] <= raqueta_pos[3]:
                 self.x += self.raqueta.x
                 self.puntuacion.tanto()
-                self.canvas.
+                # self.canvas.
                 return True
         return False
 
@@ -58,7 +58,7 @@ class Raqueta:
         self.canvas_width = self.canvas.winfo_width()
         self.canvas.bind_all("<KeyPress-Left>", self.ir_izq)
         self.canvas.bind_all("<KeyPress-Right>", self.ir_der)
-    
+
     def dibujar(self):
         self.canvas.move(self.id, self.x, 0)
         pos = self.canvas.coords(self.id)
@@ -73,7 +73,7 @@ class Raqueta:
 
     def ir_izq(self, evt):
         self.x = -2
-    
+
     def ir_der(self, evt):
         self.x = 2
 
@@ -84,7 +84,7 @@ class Puntuacion:
         self.canvas = canvas
         self.id = canvas.create_text(450, 25, font=("Ubuntu", 34),
                                      text=self.puntuacion, fill=color)
-    
+
     def tanto(self):
         self.puntuacion += 1
         self.canvas.itemconfig(self.id, text=self.puntuacion)
@@ -104,7 +104,7 @@ def main():
     game_over_text = canvas.create_text(250, 200, font=("Ubuntu", 34),
                                         text="Fin del Juego", state="hidden")
 
-    while 1:
+    while True:
         if not pelota.golpea_fondo and pelota.play:
             pelota.dibujar()
             raqueta.dibujar()
@@ -114,6 +114,7 @@ def main():
         tk.update_idletasks()
         tk.update()
         time.sleep(0.01)
+
 
 if __name__ == '__main__':
     main()
